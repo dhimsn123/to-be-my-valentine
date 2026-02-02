@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine ❤️</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', sans-serif;
+}
+
+body{
+  height:100vh;
+  background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-align:center;
+}
+
+/* HEARTS RAIN */
+.heart{
+  position:fixed;
+  top:-10vh;
+  font-size:30px;
+  animation:fall linear infinite;
+  opacity:0.9;
+  pointer-events:none;
+  text-shadow:0 0 10px #ff4d6d;
+}
+
+@keyframes fall{
+  0%{ transform:translateY(-10vh); }
+  100%{ transform:translateY(110vh); }
+}
+
+/* SECTIONS */
+.section{ display:none; }
+.show{ display:block; }
+
+/* TEXT */
+h1{
+  font-size:3.2rem;
+  margin-bottom:35px;
+  text-shadow:0 0 12px rgba(255,255,255,0.8);
+}
+
+/* BUTTONS */
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+}
+
+.btn{
+  padding:18px 50px;
+  font-size:2.2rem;
+  border:none;
+  border-radius:60px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.yes{
+  background:#ff6f91;
+  color:white;
+  box-shadow:0 0 25px rgba(255,111,145,0.8);
+}
+
+.no{
+  background:#b8b8b8;
+  color:#333;
+}
+
+.no:active{
+  content:"Choose wisely 😌";
+}
+
+/* SURPRISE BOX */
+.box{
+  width:200px;
+  height:200px;
+  margin:auto;
+  background:linear-gradient(45deg,#ff9a9e,#fad0c4);
+  border-radius:25px;
+  box-shadow:0 0 35px rgba(255,150,150,0.9);
+  animation:pulse 1.6s infinite;
+  cursor:pointer;
+}
+
+@keyframes pulse{
+  0%{ transform:scale(1); }
+  50%{ transform:scale(1.12); }
+  100%{ transform:scale(1); }
+}
+
+/* HEART */
+.big-heart{
+  font-size:160px;
+  animation:beat 1s infinite;
+  margin-bottom:20px;
+}
+
+@keyframes beat{
+  0%{ transform:scale(1); }
+  50%{ transform:scale(1.3); }
+  100%{ transform:scale(1); }
+}
+
+.love-text{
+  font-size:3.4rem;
+  text-shadow:0 0 25px #ff4d6d;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- QUESTION -->
+<div id="step1" class="section show">
+  <h1>💘 Will You Be My Valentine? 💘</h1>
+  <div class="buttons">
+    <button class="btn yes" onclick="goBox()">YES</button>
+    <button class="btn no" onclick="alert('Choose wisely 😌')">NO</button>
+  </div>
+</div>
+
+<!-- SURPRISE BOX -->
+<div id="step2" class="section">
+  <h1>🎁 A Little Surprise For You 🎁</h1>
+  <div class="box" onclick="openHeart()"></div>
+</div>
+
+<!-- HEART -->
+<div id="step3" class="section">
+  <div class="big-heart">❤️</div>
+  <div class="love-text"><br>I LOVE YOU SHARMA JI 💕</div>
+</div>
+
+<script>
+const music = document.getElementById("music");
+
+function goBox(){
+  music.play();
+  step1.classList.remove("show");
+  step2.classList.add("show");
+}
+
+function openHeart(){
+  step2.classList.remove("show");
+  step3.classList.add("show");
+}
+
+/* HEARTS RAIN – CLEAR & SOFT */
+for(let i=0;i<80;i++){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"%";
+  h.style.fontSize=Math.random()*30+20+"px";
+  h.style.animationDuration=Math.random()*4+6+"s";
+  h.style.animationDelay=Math.random()*5+"s";
+  document.body.appendChild(h);
+}
+</script>
+
+</body>
+</html>
